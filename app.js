@@ -87,6 +87,7 @@ particlesJS("particles-js", {
         enable: false,
         mode: "push"
       },
+
       resize: true
     },
     modes: {
