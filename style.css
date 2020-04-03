@@ -1,0 +1,31 @@
+body {
+  margin: 0;
+  font-family: Roboto;
+}
+#btext {
+  top: 40px;
+  left: 30px;
+  position: absolute;
+  width: 100%;
+  color: white;
+  line-height: 50px;
+  font-size: 48px;
+  font-weight: 700;
+  letter-spacing: 2.4px;
+  font-family: "Cantata One", Constantia, "Lucida Bright", Lucidabright,
+    "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif",
+    "Liberation Serif", Georgia, serif;
+}
+#btext,
+#content {
+  color: aliceblue;
+  font-size: 40px;
+  position: absolute;
+  width: 100%;
+}
+#particles-js {
+  height: 100%;
+  width: 100%;
+  background: #000022;
+  background-size: cover;
+}
