@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Kartike Dutta '98 — Portfolio</title>
   <meta name="description" content="Kartike Dutta — Lead Software Engineer. A retro Windows 98-style portfolio." />
   <link rel="stylesheet" href="styles.css" />
@@ -75,8 +75,16 @@
       <button class="d-icon" data-window="contact">
         <span class="d-icon-img">📇</span><span class="d-icon-label">Contact.card</span>
       </button>
+      <button class="d-icon" data-window="resume">
+        <span class="d-icon-img">📄</span><span class="d-icon-label">Résumé.pdf</span>
+      </button>
       <button class="d-icon" data-link="https://linkedin.com/in/kartike-dutta-4b1228a0">
-        <span class="d-icon-img">🔗</span><span class="d-icon-label">LinkedIn</span>
+        <span class="d-icon-img">
+          <svg class="li-logo" viewBox="0 0 32 32" role="img" aria-label="LinkedIn">
+            <rect width="32" height="32" rx="5" fill="#0A66C2"/>
+            <path fill="#fff" d="M8.4 12.1h3.2v10.6H8.4V12.1zm1.6-5.2a1.86 1.86 0 1 1 0 3.72 1.86 1.86 0 0 1 0-3.72zM13.9 12.1h3.07v1.45h.04c.43-.81 1.47-1.66 3.03-1.66 3.24 0 3.84 2.13 3.84 4.9v5.9h-3.2v-5.23c0-1.25-.02-2.85-1.74-2.85-1.74 0-2 1.36-2 2.76v5.32h-3.2V12.1z"/>
+          </svg>
+        </span><span class="d-icon-label">LinkedIn</span>
       </button>
       <button class="d-icon" data-window="recycle">
         <span class="d-icon-img">🗑️</span><span class="d-icon-label">Recycle Bin</span>
@@ -111,8 +119,9 @@
         <button class="start-item" data-window="projects"><span>🗂️</span> Projects</button>
         <button class="start-item" data-window="education"><span>🎓</span> Education</button>
         <button class="start-item" data-window="contact"><span>📇</span> Contact</button>
+        <button class="start-item" data-window="resume"><span>📄</span> Résumé.pdf</button>
         <div class="start-sep"></div>
-        <button class="start-item" data-link="https://linkedin.com/in/kartike-dutta-4b1228a0"><span>🔗</span> LinkedIn</button>
+        <button class="start-item" data-link="https://linkedin.com/in/kartike-dutta-4b1228a0"><span><svg class="li-logo" viewBox="0 0 32 32" role="img" aria-label="LinkedIn"><rect width="32" height="32" rx="5" fill="#0A66C2"/><path fill="#fff" d="M8.4 12.1h3.2v10.6H8.4V12.1zm1.6-5.2a1.86 1.86 0 1 1 0 3.72 1.86 1.86 0 0 1 0-3.72zM13.9 12.1h3.07v1.45h.04c.43-.81 1.47-1.66 3.03-1.66 3.24 0 3.84 2.13 3.84 4.9v5.9h-3.2v-5.23c0-1.25-.02-2.85-1.74-2.85-1.74 0-2 1.36-2 2.76v5.32h-3.2V12.1z"/></svg></span> LinkedIn</button>
         <button class="start-item" data-window="about-os"><span>ℹ️</span> About KartikeOS</button>
         <div class="start-sep"></div>
         <button class="start-item" id="shutdown"><span>⏻</span> Shut Down…</button>

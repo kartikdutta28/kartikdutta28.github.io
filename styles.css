@@ -18,8 +18,13 @@
 
 * { box-sizing: border-box; }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
 html, body {
   margin: 0; height: 100%; overflow: hidden;
+  max-width: 100vw; overflow-x: hidden;
   font-family: var(--font);
   font-size: 12px;
   color: var(--text);
@@ -133,7 +138,9 @@ html, body {
   display: flex; flex-direction: column; align-items: center; gap: 4px;
   padding: 6px 4px; color: #fff;
 }
-.d-icon-img { font-size: 30px; filter: drop-shadow(1px 1px 0 rgba(0,0,0,.4)); }
+.d-icon-img { font-size: 30px; filter: drop-shadow(1px 1px 0 rgba(0,0,0,.4)); line-height: 1; }
+.d-icon-img .li-logo { width: 32px; height: 32px; display: block; }
+.start-item .li-logo { width: 16px; height: 16px; display: block; }
 .d-icon-label {
   font-size: 11px; text-align: center; color: #fff; padding: 1px 3px;
   text-shadow: 1px 1px 1px rgba(0,0,0,.6);
@@ -153,41 +160,66 @@ html, body {
 .app-window.inactive .title-bar { background: var(--grey-dark); }
 .app-window .window-content {
   background: #fff; box-shadow: var(--shadow-in); margin: 3px;
-  padding: 16px; overflow: auto; max-height: 66vh; line-height: 1.5;
+  padding: 20px 22px; overflow: auto; max-height: 66vh;
+  /* Readable body text — a cleaner face + comfy spacing, while chrome stays retro */
+  font-family: Verdana, Tahoma, Geneva, sans-serif;
+  font-size: 14px; line-height: 1.7; color: #1a1a1a;
+  -webkit-font-smoothing: antialiased;
 }
 .win-min { min-width: 220px; }
 
 /* Window content typography */
-.window-content h2 { font-size: 15px; margin: 0 0 10px; border-bottom: 2px solid var(--grey); padding-bottom: 6px; }
-.window-content h3 { font-size: 13px; margin: 14px 0 4px; color: var(--navy); }
-.window-content p { margin: 0 0 10px; }
-.window-content ul { margin: 4px 0 12px; padding-left: 20px; }
-.window-content li { margin-bottom: 5px; }
+.window-content h2 { font-size: 20px; margin: 0 0 14px; border-bottom: 2px solid var(--grey); padding-bottom: 8px; letter-spacing: .2px; }
+.window-content h3 { font-size: 15px; margin: 18px 0 6px; color: var(--navy); }
+.window-content p { margin: 0 0 13px; }
+.window-content ul { margin: 6px 0 16px; padding-left: 22px; }
+.window-content li { margin-bottom: 8px; }
 .window-content a { color: #0000ee; }
 .window-content a:visited { color: #551a8b; }
-.win-muted { color: var(--grey-dark); }
+.win-muted { color: #5a5a5a; }
 
 /* Skills badges */
-.badges { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 12px; }
+.badges { display: flex; flex-wrap: wrap; gap: 7px; margin: 6px 0 14px; }
 .badge {
-  font-size: 11px; padding: 3px 8px; background: var(--grey);
+  font-size: 13px; padding: 5px 11px; background: var(--grey);
   box-shadow: var(--shadow-out);
 }
-.skill-block { margin-bottom: 6px; }
+.skill-block { margin-bottom: 10px; }
 
 /* Contact table */
-.contact-row { display: flex; gap: 8px; margin-bottom: 8px; align-items: center; }
-.contact-row b { min-width: 70px; }
+.contact-row { display: flex; gap: 8px; margin-bottom: 11px; align-items: center; }
+.contact-row b { min-width: 78px; }
 
 /* Experience job */
-.job { margin-bottom: 16px; }
-.job-head { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
-.job-date { color: var(--grey-dark); white-space: nowrap; }
+.job { margin-bottom: 20px; }
+.job-head { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; align-items: baseline; }
+.job-date { color: #5a5a5a; white-space: nowrap; font-size: 13px; }
 
 /* Project cards */
-.proj { border: 1px solid var(--grey); box-shadow: var(--shadow-out); padding: 10px; margin-bottom: 12px; background: var(--grey); }
-.proj-title { font-weight: bold; margin-bottom: 4px; }
-.proj-body { background:#fff; box-shadow: var(--shadow-in); padding: 8px; }
+.proj { border: 1px solid var(--grey); box-shadow: var(--shadow-out); padding: 12px; margin-bottom: 14px; background: var(--grey); }
+.proj-title { font-weight: bold; margin-bottom: 6px; font-size: 15px; }
+.proj-body { background:#fff; box-shadow: var(--shadow-in); padding: 11px 13px; }
+
+/* ---------- PDF viewer window ---------- */
+.pdf-window .window-content {
+  padding: 0; margin: 3px; max-height: none; background: #525659;
+  font-family: var(--font);
+}
+.pdf-toolbar {
+  display: flex; align-items: center; gap: 8px; padding: 6px 8px;
+  background: var(--grey); box-shadow: inset 0 -1px var(--grey-dark), inset 0 1px #fff;
+}
+.pdf-toolbar .btn { min-width: 0; text-decoration: none; font-size: 12px; }
+.pdf-name { margin-left: auto; font-size: 12px; color: var(--grey-darker); padding-right: 4px; }
+.pdf-frame { width: 100%; height: 72vh; border: none; display: block; background: #525659; }
+.pdf-fallback { margin: 0; padding: 8px 10px; background: var(--grey); font-size: 12px; }
+.pdf-fallback a { color: #0000ee; }
+
+@media (max-width: 640px) {
+  .pdf-frame { height: 62vh; }
+  .pdf-toolbar { flex-wrap: wrap; }
+  .pdf-name { display: none; }
+}
 
 /* ---------- Taskbar ---------- */
 .taskbar {
@@ -240,8 +272,37 @@ html, body {
 
 /* ---------- Mobile ---------- */
 @media (max-width: 640px) {
-  .app-window { max-width: 96vw; left: 2vw !important; }
-  .app-window .window-content { max-height: 60vh; }
-  .icons { max-height: calc(100vh - 120px); }
-  .start-menu { width: 200px; }
+  html, body { font-size: 15px; }
+
+  /* Bigger, tappable desktop icons in a single readable column */
+  .icons { top: 10px; left: 10px; gap: 10px; max-height: calc(100vh - 130px); }
+  .d-icon { width: 88px; padding: 8px 4px; }
+  .d-icon-img { font-size: 40px; }
+  .d-icon-img .li-logo { width: 40px; height: 40px; }
+  .d-icon-label { font-size: 13px; }
+
+  /* Windows fill the screen on phones (position/width also set in JS) */
+  .app-window { max-width: 96vw; }
+  .app-window .window-content { max-height: 70vh; padding: 18px; font-size: 15px; line-height: 1.72; }
+  .window-content h2 { font-size: 21px; }
+  .window-content h3 { font-size: 16px; }
+  .badge { font-size: 14px; }
+  .title-bar { height: 30px; }
+  .title-bar-text { font-size: 14px; }
+  .title-bar-controls button { width: 30px; height: 26px; font-size: 14px; }
+
+  /* Larger, tappable taskbar */
+  .taskbar { height: 46px; padding: 4px 5px; gap: 5px; }
+  .start-btn { height: 38px; font-size: 15px; padding: 0 12px; }
+  .task-item { height: 38px; min-width: 0; font-size: 13px; }
+  .tray { height: 38px; }
+  .clock { font-size: 13px; }
+
+  /* Start menu + login adapt to narrow screens */
+  .start-menu { width: min(260px, 88vw); bottom: 46px; }
+  .start-item { padding: 11px 12px; font-size: 15px; }
+  .login-window { width: 94vw; }
+  .login-body { flex-direction: column; align-items: center; text-align: center; }
+  .login-right label { grid-template-columns: 90px 1fr; }
+  .btn { min-width: 84px; padding: 8px 14px; }
 }

@@ -2,8 +2,24 @@
    KartikeOS '98 — window manager + content
    ========================================================= */
 
+/* ---------- Résumé file (sits next to index.html) ---------- */
+const RESUME_FILE = 'Kartike_Dutta_Resume_Lst_23_Apr.pdf';
+
 /* ---------- Window content (from résumé) ---------- */
 const WINDOWS = {
+  resume: {
+    title: '📄 Résumé.pdf — PDF Viewer',
+    w: 760,
+    cls: 'pdf-window',
+    html: `
+      <div class="pdf-toolbar">
+        <a class="btn" href="${RESUME_FILE}" target="_blank" rel="noopener">🔍 Open in new tab</a>
+        <a class="btn" href="${RESUME_FILE}" download>⬇️ Download</a>
+        <span class="pdf-name">Kartike_Dutta_Resume.pdf</span>
+      </div>
+      <iframe class="pdf-frame" src="${RESUME_FILE}#toolbar=1&view=FitH" title="Kartike Dutta Résumé"></iframe>
+      <p class="pdf-fallback">Can't see the document? <a href="${RESUME_FILE}" target="_blank" rel="noopener">Open the résumé here</a>.</p>`,
+  },
   about: {
     title: '📁 About Me',
     w: 460,
@@ -156,17 +172,24 @@ function openWindow(id) {
   }
 
   const win = document.createElement('div');
-  win.className = 'app-window';
-  const width = Math.min(def.w || 400, window.innerWidth - 20);
-  win.style.width = width + 'px';
+  win.className = 'app-window' + (def.cls ? ' ' + def.cls : '');
 
-  // cascade position
-  const count = Object.keys(open).length;
-  const offset = count * 26;
-  const left = Math.max(6, Math.min((window.innerWidth - width) / 2 + offset - 60, window.innerWidth - width - 6));
-  const top = Math.max(10, 40 + offset);
-  win.style.left = left + 'px';
-  win.style.top = top + 'px';
+  const isMobile = window.innerWidth <= 640;
+  if (isMobile) {
+    // Fill the screen so content is large and readable — no cascade on phones
+    win.style.width = (window.innerWidth - 12) + 'px';
+    win.style.left = '6px';
+    win.style.top = '8px';
+  } else {
+    const width = Math.min(def.w || 400, window.innerWidth - 20);
+    win.style.width = width + 'px';
+    const count = Object.keys(open).length;
+    const offset = count * 26;
+    const left = Math.max(6, Math.min((window.innerWidth - width) / 2 + offset - 60, window.innerWidth - width - 6));
+    const top = Math.max(10, 40 + offset);
+    win.style.left = left + 'px';
+    win.style.top = top + 'px';
+  }
 
   win.innerHTML = `
     <div class="title-bar">
