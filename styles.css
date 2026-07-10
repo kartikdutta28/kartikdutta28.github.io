@@ -1,0 +1,247 @@
+/* =========================================================
+   KartikeOS '98 — Windows 98 style portfolio
+   ========================================================= */
+
+:root {
+  --grey: #c0c0c0;
+  --grey-dark: #808080;
+  --grey-darker: #404040;
+  --white: #ffffff;
+  --teal: #008080;
+  --navy: #000080;
+  --navy-2: #1084d0;
+  --text: #000000;
+  --font: "Pixelated MS Sans Serif", Tahoma, "MS Sans Serif", Geneva, Verdana, sans-serif;
+  --shadow-out: inset -1px -1px #0a0a0a, inset 1px 1px #ffffff, inset -2px -2px #808080, inset 2px 2px #dfdfdf;
+  --shadow-in: inset -1px -1px #ffffff, inset 1px 1px #0a0a0a, inset -2px -2px #dfdfdf, inset 2px 2px #808080;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0; height: 100%; overflow: hidden;
+  font-family: var(--font);
+  font-size: 12px;
+  color: var(--text);
+  -webkit-font-smoothing: none;
+  user-select: none;
+}
+
+.hidden { display: none !important; }
+
+/* ---------- Shared flag logo ---------- */
+.boot-flag, .login-flag, .start-flag {
+  display: inline-grid; grid-template-columns: 1fr 1fr; gap: 1px;
+  transform: skewX(-12deg);
+}
+.boot-flag span, .login-flag span, .start-flag span { display: block; }
+.boot-flag span:nth-child(1), .login-flag span:nth-child(1), .start-flag span:nth-child(1) { background: #ff3b30; }
+.boot-flag span:nth-child(2), .login-flag span:nth-child(2), .start-flag span:nth-child(2) { background: #4cd964; }
+.boot-flag span:nth-child(3), .login-flag span:nth-child(3), .start-flag span:nth-child(3) { background: #007aff; }
+.boot-flag span:nth-child(4), .login-flag span:nth-child(4), .start-flag span:nth-child(4) { background: #ffcc00; }
+.boot-flag span { width: 22px; height: 22px; }
+.login-flag span { width: 20px; height: 20px; }
+.start-flag span { width: 8px; height: 8px; }
+
+/* ---------- Boot screen ---------- */
+.boot {
+  position: fixed; inset: 0; background: #000; color: #fff;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 26px; z-index: 100;
+}
+.boot-logo { display: flex; align-items: center; gap: 18px; }
+.boot-title { font-size: 34px; letter-spacing: 1px; }
+.boot-title b { color: #ffcc00; }
+.boot-title sup { font-size: 12px; }
+.boot-bar {
+  width: 260px; height: 20px; border: 2px solid #fff; padding: 2px; background: #000;
+}
+.boot-bar i {
+  display: block; height: 100%; width: 0; background: repeating-linear-gradient(90deg,#4cd964 0 8px,#000 8px 11px);
+  animation: bootload 2.4s steps(20) forwards;
+}
+@keyframes bootload { to { width: 100%; } }
+.boot-msg { font-size: 13px; color: #bbb; }
+
+/* ---------- Login ---------- */
+.login {
+  position: fixed; inset: 0; z-index: 90;
+  background: var(--teal);
+  display: flex; align-items: center; justify-content: center;
+}
+.login-window { width: min(440px, 92vw); }
+.login-body { display: flex; gap: 18px; padding: 18px; }
+.login-left { text-align: center; padding-top: 6px; min-width: 90px; }
+.login-left p { margin: 10px 0 0; }
+.login-right { flex: 1; }
+.login-hint { margin: 0 0 14px; }
+.login-hint small { color: var(--grey-dark); }
+.login-right label { display: grid; grid-template-columns: 78px 1fr; align-items: center; gap: 8px; margin-bottom: 10px; }
+.login-right input {
+  font-family: var(--font); font-size: 12px; padding: 3px 4px; border: none;
+  box-shadow: var(--shadow-in); background: #fff;
+}
+.login-btns { display: flex; gap: 8px; justify-content: flex-end; margin-top: 6px; }
+
+/* ---------- Window chrome (Win98) ---------- */
+.window {
+  background: var(--grey);
+  box-shadow: var(--shadow-out);
+  padding: 3px;
+}
+.title-bar {
+  background: linear-gradient(90deg, var(--navy), var(--navy-2));
+  color: #fff; padding: 3px 3px 3px 6px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 22px; cursor: default;
+}
+.title-bar-text { font-weight: bold; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.title-bar-controls { display: flex; gap: 2px; }
+.title-bar-controls button {
+  width: 18px; height: 16px; font-family: var(--font); font-size: 10px; line-height: 1;
+  background: var(--grey); box-shadow: var(--shadow-out); border: none; cursor: pointer;
+  display: grid; place-items: center; padding: 0; color: #000;
+}
+.title-bar-controls button:active { box-shadow: var(--shadow-in); }
+.window-body { padding: 12px; }
+
+/* ---------- Buttons ---------- */
+.btn {
+  font-family: var(--font); font-size: 12px; min-width: 72px; padding: 5px 12px;
+  background: var(--grey); box-shadow: var(--shadow-out); border: none; cursor: pointer; color: #000;
+}
+.btn:active { box-shadow: var(--shadow-in); padding: 6px 11px 4px 13px; }
+.btn:focus { outline: 1px dotted #000; outline-offset: -4px; }
+
+/* ---------- Desktop ---------- */
+.desktop {
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(circle at 30% 20%, #0aa 0, transparent 40%),
+    var(--teal);
+  overflow: hidden;
+}
+
+/* Desktop icons */
+.icons {
+  position: absolute; top: 14px; left: 14px;
+  display: flex; flex-direction: column; flex-wrap: wrap; gap: 6px;
+  max-height: calc(100vh - 60px);
+}
+.d-icon {
+  width: 82px; background: none; border: none; cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  padding: 6px 4px; color: #fff;
+}
+.d-icon-img { font-size: 30px; filter: drop-shadow(1px 1px 0 rgba(0,0,0,.4)); }
+.d-icon-label {
+  font-size: 11px; text-align: center; color: #fff; padding: 1px 3px;
+  text-shadow: 1px 1px 1px rgba(0,0,0,.6);
+}
+.d-icon:focus .d-icon-label,
+.d-icon.selected .d-icon-label { background: var(--navy); outline: 1px dotted #fff; }
+.d-icon:focus { outline: none; }
+
+/* ---------- Windows layer ---------- */
+.app-window {
+  position: absolute; min-width: 260px; max-width: 92vw;
+  display: flex; flex-direction: column;
+  animation: openWin 0.12s ease-out;
+}
+@keyframes openWin { from { transform: scale(0.96); opacity: 0.4; } }
+.app-window .title-bar { cursor: move; }
+.app-window.inactive .title-bar { background: var(--grey-dark); }
+.app-window .window-content {
+  background: #fff; box-shadow: var(--shadow-in); margin: 3px;
+  padding: 16px; overflow: auto; max-height: 66vh; line-height: 1.5;
+}
+.win-min { min-width: 220px; }
+
+/* Window content typography */
+.window-content h2 { font-size: 15px; margin: 0 0 10px; border-bottom: 2px solid var(--grey); padding-bottom: 6px; }
+.window-content h3 { font-size: 13px; margin: 14px 0 4px; color: var(--navy); }
+.window-content p { margin: 0 0 10px; }
+.window-content ul { margin: 4px 0 12px; padding-left: 20px; }
+.window-content li { margin-bottom: 5px; }
+.window-content a { color: #0000ee; }
+.window-content a:visited { color: #551a8b; }
+.win-muted { color: var(--grey-dark); }
+
+/* Skills badges */
+.badges { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 12px; }
+.badge {
+  font-size: 11px; padding: 3px 8px; background: var(--grey);
+  box-shadow: var(--shadow-out);
+}
+.skill-block { margin-bottom: 6px; }
+
+/* Contact table */
+.contact-row { display: flex; gap: 8px; margin-bottom: 8px; align-items: center; }
+.contact-row b { min-width: 70px; }
+
+/* Experience job */
+.job { margin-bottom: 16px; }
+.job-head { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.job-date { color: var(--grey-dark); white-space: nowrap; }
+
+/* Project cards */
+.proj { border: 1px solid var(--grey); box-shadow: var(--shadow-out); padding: 10px; margin-bottom: 12px; background: var(--grey); }
+.proj-title { font-weight: bold; margin-bottom: 4px; }
+.proj-body { background:#fff; box-shadow: var(--shadow-in); padding: 8px; }
+
+/* ---------- Taskbar ---------- */
+.taskbar {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 34px;
+  background: var(--grey); box-shadow: inset 0 1px #fff, inset 0 2px #dfdfdf;
+  display: flex; align-items: center; gap: 4px; padding: 3px 4px; z-index: 50;
+  border-top: 1px solid #fff;
+}
+.start-btn {
+  font-family: var(--font); font-size: 12px; font-weight: bold;
+  display: flex; align-items: center; gap: 5px; height: 26px; padding: 0 8px;
+  background: var(--grey); box-shadow: var(--shadow-out); border: none; cursor: pointer;
+}
+.start-btn.active, .start-btn:active { box-shadow: var(--shadow-in); }
+.task-items { flex: 1; display: flex; gap: 4px; overflow: hidden; }
+.task-item {
+  font-family: var(--font); font-size: 11px; height: 26px; min-width: 120px; max-width: 160px;
+  padding: 0 8px; background: var(--grey); box-shadow: var(--shadow-out); border: none;
+  cursor: pointer; display: flex; align-items: center; gap: 6px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.task-item.active { box-shadow: var(--shadow-in); font-weight: bold; }
+.tray {
+  display: flex; align-items: center; gap: 8px; height: 26px; padding: 0 8px;
+  box-shadow: var(--shadow-in);
+}
+.tray-icon { font-size: 13px; }
+.clock { font-size: 11px; }
+
+/* ---------- Start menu ---------- */
+.start-menu {
+  position: absolute; bottom: 34px; left: 4px; z-index: 60; width: 220px;
+  background: var(--grey); box-shadow: var(--shadow-out); padding: 3px;
+  display: flex; animation: openWin 0.1s ease-out;
+}
+.start-side {
+  width: 30px; background: linear-gradient(var(--navy), var(--navy-2));
+  color: #fff; writing-mode: vertical-rl; transform: rotate(180deg);
+  text-align: right; font-weight: bold; font-size: 16px; padding: 8px 4px; letter-spacing: 1px;
+}
+.start-list { flex: 1; }
+.start-item {
+  width: 100%; text-align: left; font-family: var(--font); font-size: 12px;
+  background: none; border: none; cursor: pointer; padding: 7px 10px;
+  display: flex; align-items: center; gap: 10px;
+}
+.start-item span { font-size: 16px; width: 18px; text-align: center; }
+.start-item:hover { background: var(--navy); color: #fff; }
+.start-sep { height: 1px; margin: 3px 2px; background: var(--grey-dark); box-shadow: 0 1px #fff; }
+
+/* ---------- Mobile ---------- */
+@media (max-width: 640px) {
+  .app-window { max-width: 96vw; left: 2vw !important; }
+  .app-window .window-content { max-height: 60vh; }
+  .icons { max-height: calc(100vh - 120px); }
+  .start-menu { width: 200px; }
+}

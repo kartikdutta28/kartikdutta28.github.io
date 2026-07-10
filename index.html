@@ -1,41 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>KartikeDutta</title>
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto:300"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" type="text/css" href="style.css" />
-  </head>
-  <body>
-    <div id="particles-js">
-      <div id="btext">
-        <h1>
-          Hello,<br /><br />
-          I'm kartike dutta.
-        </h1>
-        <div id="content">
-          <div style="color: chocolate;">
-            A Software Engineer & Tech enthusaist.
-          </div>
-          I can switch between frontend and backend and sometimes I handle both.
-          You can use the links given below to know more about me..
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kartike Dutta '98 — Portfolio</title>
+  <meta name="description" content="Kartike Dutta — Lead Software Engineer. A retro Windows 98-style portfolio." />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%F0%9F%92%BB</text></svg>" />
+</head>
+<body>
 
-        <ul>
-          <p>Get in touch via</p>
-          <li><a href="https://github.com/kartikdutta28">Github |</a></li>
-          <li>
-            <a href="linkedin.com/in/kartik-dutta-4b1228a0">LinkedIn |</a>
-          </li>
-          <li><a href="/resume">Resume</a></li>
-        </ul>
+  <!-- ============ BOOT SCREEN ============ -->
+  <div id="boot" class="boot">
+    <div class="boot-logo">
+      <div class="boot-flag">
+        <span></span><span></span><span></span><span></span>
+      </div>
+      <div class="boot-title">KartikeOS<sup>&trade;</sup> <b>98</b></div>
+    </div>
+    <div class="boot-bar"><i></i></div>
+    <div class="boot-msg">Starting KartikeOS…</div>
+  </div>
+
+  <!-- ============ LOGIN SCREEN ============ -->
+  <div id="login" class="login hidden">
+    <div class="login-window window">
+      <div class="title-bar">
+        <span class="title-bar-text">💻 Welcome to KartikeOS</span>
+      </div>
+      <div class="window-body login-body">
+        <div class="login-left">
+          <div class="login-flag">
+            <span></span><span></span><span></span><span></span>
+          </div>
+          <p><b>KartikeOS 98</b></p>
+        </div>
+        <div class="login-right">
+          <p class="login-hint">Type anything — the door's open. 🙂<br /><small>(DO NOT click my face)</small></p>
+          <label>User name:
+            <input id="loginUser" type="text" value="guest" />
+          </label>
+          <label>Password:
+            <input id="loginPass" type="password" value="••••••" />
+          </label>
+          <div class="login-btns">
+            <button class="btn" id="loginEnter">Enter</button>
+            <button class="btn" id="loginCancel">Cancel</button>
+          </div>
+        </div>
       </div>
     </div>
-    <script type="text/javascript" src="particles.js"></script>
-    <script type="text/javascript" src="app.js"></script>
-  </body>
+  </div>
+
+  <!-- ============ DESKTOP ============ -->
+  <div id="desktop" class="desktop hidden">
+
+    <!-- Desktop icons -->
+    <div class="icons">
+      <button class="d-icon" data-window="about">
+        <span class="d-icon-img">📁</span><span class="d-icon-label">About Me</span>
+      </button>
+      <button class="d-icon" data-window="skills">
+        <span class="d-icon-img">🧰</span><span class="d-icon-label">Skills.exe</span>
+      </button>
+      <button class="d-icon" data-window="experience">
+        <span class="d-icon-img">💼</span><span class="d-icon-label">Experience</span>
+      </button>
+      <button class="d-icon" data-window="projects">
+        <span class="d-icon-img">🗂️</span><span class="d-icon-label">Projects</span>
+      </button>
+      <button class="d-icon" data-window="education">
+        <span class="d-icon-img">🎓</span><span class="d-icon-label">Education</span>
+      </button>
+      <button class="d-icon" data-window="contact">
+        <span class="d-icon-img">📇</span><span class="d-icon-label">Contact.card</span>
+      </button>
+      <button class="d-icon" data-link="https://linkedin.com/in/kartike-dutta-4b1228a0">
+        <span class="d-icon-img">🔗</span><span class="d-icon-label">LinkedIn</span>
+      </button>
+      <button class="d-icon" data-window="recycle">
+        <span class="d-icon-img">🗑️</span><span class="d-icon-label">Recycle Bin</span>
+      </button>
+    </div>
+
+    <!-- Windows get injected here -->
+    <div id="windowLayer"></div>
+
+    <!-- ============ TASKBAR ============ -->
+    <div class="taskbar">
+      <button class="start-btn" id="startBtn">
+        <span class="start-flag">
+          <span></span><span></span><span></span><span></span>
+        </span>
+        <b>Start</b>
+      </button>
+      <div class="task-items" id="taskItems"></div>
+      <div class="tray">
+        <span class="tray-icon" title="Definitely not a virus">🔊</span>
+        <span class="clock" id="clock">--:--</span>
+      </div>
+    </div>
+
+    <!-- ============ START MENU ============ -->
+    <div class="start-menu hidden" id="startMenu">
+      <div class="start-side"><span>KartikeOS&nbsp;98</span></div>
+      <div class="start-list">
+        <button class="start-item" data-window="about"><span>📁</span> About Me</button>
+        <button class="start-item" data-window="skills"><span>🧰</span> Skills</button>
+        <button class="start-item" data-window="experience"><span>💼</span> Experience</button>
+        <button class="start-item" data-window="projects"><span>🗂️</span> Projects</button>
+        <button class="start-item" data-window="education"><span>🎓</span> Education</button>
+        <button class="start-item" data-window="contact"><span>📇</span> Contact</button>
+        <div class="start-sep"></div>
+        <button class="start-item" data-link="https://linkedin.com/in/kartike-dutta-4b1228a0"><span>🔗</span> LinkedIn</button>
+        <button class="start-item" data-window="about-os"><span>ℹ️</span> About KartikeOS</button>
+        <div class="start-sep"></div>
+        <button class="start-item" id="shutdown"><span>⏻</span> Shut Down…</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
 </html>
