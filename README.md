@@ -1,7 +1,6 @@
 # KartikeOS '98 — Retro Desktop Portfolio
 
-A portfolio for **Kartike Dutta** styled as a **Windows 98 desktop**, inspired by
-[adamclambert.com](https://www.adamclambert.com/). Built with plain **HTML, CSS & JavaScript** —
+A portfolio for **Kartike Dutta** styled as a **Windows 98 desktop**. Built with plain **HTML, CSS & JavaScript** —
 no frameworks, no build step, no dependencies. Ready for GitHub Pages.
 
 ## The experience
