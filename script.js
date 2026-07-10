@@ -174,10 +174,10 @@ function openWindow(id) {
   const win = document.createElement('div');
   win.className = 'app-window' + (def.cls ? ' ' + def.cls : '');
 
-  const isMobile = window.innerWidth <= 640;
+  const isMobile = window.matchMedia('(max-width: 640px)').matches;
   if (isMobile) {
     // Fill the screen so content is large and readable — no cascade on phones
-    win.style.width = (window.innerWidth - 12) + 'px';
+    win.style.width = (document.documentElement.clientWidth - 12) + 'px';
     win.style.left = '6px';
     win.style.top = '8px';
   } else {

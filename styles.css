@@ -52,7 +52,7 @@ html, body {
 .boot {
   position: fixed; inset: 0; background: #000; color: #fff;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 26px; z-index: 100;
+  gap: 26px; z-index: 100; overflow: hidden; padding: 20px;
 }
 .boot-logo { display: flex; align-items: center; gap: 18px; }
 .boot-title { font-size: 34px; letter-spacing: 1px; }
@@ -73,6 +73,7 @@ html, body {
   position: fixed; inset: 0; z-index: 90;
   background: var(--teal);
   display: flex; align-items: center; justify-content: center;
+  overflow: hidden; padding: 16px;
 }
 .login-window { width: min(440px, 92vw); }
 .login-body { display: flex; gap: 18px; padding: 18px; }
@@ -274,15 +275,24 @@ html, body {
 @media (max-width: 640px) {
   html, body { font-size: 15px; }
 
-  /* Bigger, tappable desktop icons in a single readable column */
-  .icons { top: 10px; left: 10px; gap: 10px; max-height: calc(100vh - 130px); }
-  .d-icon { width: 88px; padding: 8px 4px; }
+  /* Boot logo must never overflow a narrow screen */
+  .boot-logo { flex-direction: column; gap: 14px; }
+  .boot-title { font-size: 24px; text-align: center; }
+  .boot-bar { width: min(260px, 80vw); }
+
+  /* Icons in a width-constrained grid so they can't push the layout wider */
+  .icons {
+    top: 10px; left: 10px; right: 10px; gap: 10px;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(76px, 1fr));
+    flex-wrap: initial; max-height: calc(100vh - 120px); overflow-y: auto;
+  }
+  .d-icon { width: auto; padding: 8px 4px; }
   .d-icon-img { font-size: 40px; }
   .d-icon-img .li-logo { width: 40px; height: 40px; }
   .d-icon-label { font-size: 13px; }
 
   /* Windows fill the screen on phones (position/width also set in JS) */
-  .app-window { max-width: 96vw; }
+  .app-window { min-width: 0; max-width: 96vw; }
   .app-window .window-content { max-height: 70vh; padding: 18px; font-size: 15px; line-height: 1.72; }
   .window-content h2 { font-size: 21px; }
   .window-content h3 { font-size: 16px; }
