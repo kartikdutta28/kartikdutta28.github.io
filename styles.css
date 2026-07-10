@@ -216,12 +216,6 @@ html, body {
 .pdf-fallback { margin: 0; padding: 8px 10px; background: var(--grey); font-size: 12px; }
 .pdf-fallback a { color: #0000ee; }
 
-@media (max-width: 640px) {
-  .pdf-frame { height: 62vh; }
-  .pdf-toolbar { flex-wrap: wrap; }
-  .pdf-name { display: none; }
-}
-
 /* ---------- Taskbar ---------- */
 .taskbar {
   position: absolute; left: 0; right: 0; bottom: 0; height: 34px;
@@ -271,48 +265,55 @@ html, body {
 .start-item:hover { background: var(--navy); color: #fff; }
 .start-sep { height: 1px; margin: 3px 2px; background: var(--grey-dark); box-shadow: 0 1px #fff; }
 
-/* ---------- Mobile ---------- */
-@media (max-width: 640px) {
-  html, body { font-size: 15px; }
+/* ---------- Mobile ----------
+   Driven by <html class="m">, which JS sets when EITHER the viewport is
+   <=640px OR the physical screen is phone-sized. The second case handles
+   Chrome's "Desktop site" toggle, which fakes a ~980px viewport (so a plain
+   @media query would never match) even on a small phone. */
+html.m, html.m body { font-size: 15px; }
 
-  /* Boot logo must never overflow a narrow screen */
-  .boot-logo { flex-direction: column; gap: 14px; }
-  .boot-title { font-size: 24px; text-align: center; }
-  .boot-bar { width: min(260px, 80vw); }
+/* Boot logo must never overflow a narrow screen */
+html.m .boot-logo { flex-direction: column; gap: 14px; }
+html.m .boot-title { font-size: 24px; text-align: center; }
+html.m .boot-bar { width: min(260px, 80vw); }
 
-  /* Icons in a width-constrained grid so they can't push the layout wider */
-  .icons {
-    top: 10px; left: 10px; right: 10px; gap: 10px;
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(76px, 1fr));
-    flex-wrap: initial; max-height: calc(100vh - 120px); overflow-y: auto;
-  }
-  .d-icon { width: auto; padding: 8px 4px; }
-  .d-icon-img { font-size: 40px; }
-  .d-icon-img .li-logo { width: 40px; height: 40px; }
-  .d-icon-label { font-size: 13px; }
-
-  /* Windows fill the screen on phones (position/width also set in JS) */
-  .app-window { min-width: 0; max-width: 96vw; }
-  .app-window .window-content { max-height: 70vh; padding: 18px; font-size: 15px; line-height: 1.72; }
-  .window-content h2 { font-size: 21px; }
-  .window-content h3 { font-size: 16px; }
-  .badge { font-size: 14px; }
-  .title-bar { height: 30px; }
-  .title-bar-text { font-size: 14px; }
-  .title-bar-controls button { width: 30px; height: 26px; font-size: 14px; }
-
-  /* Larger, tappable taskbar */
-  .taskbar { height: 46px; padding: 4px 5px; gap: 5px; }
-  .start-btn { height: 38px; font-size: 15px; padding: 0 12px; }
-  .task-item { height: 38px; min-width: 0; font-size: 13px; }
-  .tray { height: 38px; }
-  .clock { font-size: 13px; }
-
-  /* Start menu + login adapt to narrow screens */
-  .start-menu { width: min(260px, 88vw); bottom: 46px; }
-  .start-item { padding: 11px 12px; font-size: 15px; }
-  .login-window { width: 94vw; }
-  .login-body { flex-direction: column; align-items: center; text-align: center; }
-  .login-right label { grid-template-columns: 90px 1fr; }
-  .btn { min-width: 84px; padding: 8px 14px; }
+/* Icons in a width-constrained grid so they can't push the layout wider */
+html.m .icons {
+  top: 10px; left: 10px; right: 10px; gap: 10px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(76px, 1fr));
+  flex-wrap: initial; max-height: calc(100vh - 120px); overflow-y: auto;
 }
+html.m .d-icon { width: auto; padding: 8px 4px; }
+html.m .d-icon-img { font-size: 40px; }
+html.m .d-icon-img .li-logo { width: 40px; height: 40px; }
+html.m .d-icon-label { font-size: 13px; }
+
+/* Windows fill the screen on phones (position/width also set in JS) */
+html.m .app-window { min-width: 0; max-width: 96vw; }
+html.m .app-window .window-content { max-height: 70vh; padding: 18px; font-size: 15px; line-height: 1.72; }
+html.m .window-content h2 { font-size: 21px; }
+html.m .window-content h3 { font-size: 16px; }
+html.m .badge { font-size: 14px; }
+html.m .title-bar { height: 30px; }
+html.m .title-bar-text { font-size: 14px; }
+html.m .title-bar-controls button { width: 30px; height: 26px; font-size: 14px; }
+
+/* Larger, tappable taskbar */
+html.m .taskbar { height: 46px; padding: 4px 5px; gap: 5px; }
+html.m .start-btn { height: 38px; font-size: 15px; padding: 0 12px; }
+html.m .task-item { height: 38px; min-width: 0; font-size: 13px; }
+html.m .tray { height: 38px; }
+html.m .clock { font-size: 13px; }
+
+/* Start menu + login adapt to narrow screens */
+html.m .start-menu { width: min(260px, 88vw); bottom: 46px; }
+html.m .start-item { padding: 11px 12px; font-size: 15px; }
+html.m .login-window { width: 94vw; }
+html.m .login-body { flex-direction: column; align-items: center; text-align: center; }
+html.m .login-right label { grid-template-columns: 90px 1fr; }
+html.m .btn { min-width: 84px; padding: 8px 14px; }
+
+/* PDF viewer on phones */
+html.m .pdf-frame { height: 62vh; }
+html.m .pdf-toolbar { flex-wrap: wrap; }
+html.m .pdf-name { display: none; }

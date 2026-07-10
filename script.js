@@ -174,7 +174,7 @@ function openWindow(id) {
   const win = document.createElement('div');
   win.className = 'app-window' + (def.cls ? ' ' + def.cls : '');
 
-  const isMobile = window.matchMedia('(max-width: 640px)').matches;
+  const isMobile = document.documentElement.classList.contains('m');
   if (isMobile) {
     // Fill the screen so content is large and readable — no cascade on phones
     win.style.width = (document.documentElement.clientWidth - 12) + 'px';
@@ -365,4 +365,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initIcons();
   initStart();
   initClock();
+  // Keep the mobile class in sync on rotation / resize
+  if (window.__setMobileClass) {
+    window.addEventListener('resize', window.__setMobileClass);
+    window.addEventListener('orientationchange', window.__setMobileClass);
+  }
 });
